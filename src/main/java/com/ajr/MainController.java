@@ -15,6 +15,7 @@ import com.ajr.repository.CargoRepository;
 import com.ajr.repository.CurriculoRepository;
 import com.ajr.repository.EtapaRepository;
 import com.ajr.repository.ProcessoSeletivoRepository;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController    // This means that this class is a Controller
 @RequestMapping(path = "/ajr") // This means URL's start with /demo (after Application path)
@@ -38,9 +39,15 @@ public class MainController {
     }
 
     @PostMapping("/gravarCurriculo")
-    Curriculo gravarTamanhos(@RequestBody Curriculo curriculo) {
+    Curriculo gravarCurriculo(@RequestBody Curriculo curriculo) {
         return curriculoRepository.save(curriculo);
     }
+
+    @PutMapping("/alterarCurriculo")
+    Curriculo alterarCurriculo(@RequestBody Curriculo curriculo) {
+        return curriculoRepository.save(curriculo);
+    }
+
     @GetMapping(path = "/allEtapas")
     public @ResponseBody
     Iterable<Etapa> getAllEtapas() {
@@ -49,9 +56,10 @@ public class MainController {
     }
 
     @PostMapping("/gravarEtapa")
-    Etapa gravarTamanhos(@RequestBody Etapa etapa) {
+    Etapa gravarEtapa(@RequestBody Etapa etapa) {
         return etapaRepository.save(etapa);
     }
+
     @GetMapping(path = "/allProcessosSeletivos")
     public @ResponseBody
     Iterable<ProcessoSeletivo> getAllProcessoSeletivo() {
@@ -63,6 +71,7 @@ public class MainController {
     ProcessoSeletivo gravarProcessoSeletivo(@RequestBody ProcessoSeletivo processoSeletivo) {
         return processoSelRepository.save(processoSeletivo);
     }
+
     @GetMapping(path = "/allCargos")
     public @ResponseBody
     Iterable<Cargo> getAllCargos() {
